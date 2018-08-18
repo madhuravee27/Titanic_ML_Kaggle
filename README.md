@@ -1,5 +1,5 @@
 # Titanic_ML_Kaggle
-Machine Algorithms on Kaggle Dataset 'Titanic'
+Machine Learning algorithms on Kaggle Dataset 'Titanic'
 
 Libraries used:
 * Numpy
