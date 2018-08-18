@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
 
 from time import time as time
@@ -154,12 +155,18 @@ def random_forest_classifier(train_X, train_Y, test_X, test_Y):
 	return accuracy, func_name
 
 def adaboost_classifier(train_X, train_Y, test_X, test_Y):
-	classifier = AdaBoostClassifier(n_estimators=10, learning_rate=0.6, algorithm= 'SAMME')
+	classifier = AdaBoostClassifier(n_estimators = 7, learning_rate=0.675, algorithm= 'SAMME')
 	classifier.fit(train_X,train_Y.values.ravel())
 	predictions = classifier.predict(test_X)
+
 	resultsdict = {"PassengerId": test_Y.index.tolist(), "Actual" : test_Y["Survived"], "Predicted" : predictions}
 	labels_actual_pred = pd.DataFrame(resultsdict, columns = ["Actual", "Predicted"])
 	labels_actual_pred.to_csv("C:\\Users\\niranjan\\Documents\\Machine_Learning\\kaggle\\Titanic\\adaboost_classifier_results.csv", sep = ',')
+
+	pred_dict = {"PassengerId": test_Y.index.tolist(), "Predicted" : predictions}
+	labels_pred = pd.DataFrame(pred_dict, columns = ["Predicted"])
+	labels_pred.to_csv("C:\\Users\\niranjan\\Documents\\Machine_Learning\\kaggle\\Titanic\\adaboost_classifier_predictions.csv", sep = ',')
+	
 	accuracy = accuracy_score(test_Y, predictions)
 	func_name = adaboost_classifier.__name__
 	return accuracy, func_name
@@ -167,17 +174,7 @@ def adaboost_classifier(train_X, train_Y, test_X, test_Y):
 def main():
 	
 	train_X, train_Y, test_X, test_Y = load_data();
-	'''
-	print(train_X)
-	print(train_X.shape)
-	print(train_Y)
-	print(train_Y.shape)
-	print(test_X)
-	print(test_X.shape)
-	print(test_Y)
-	print(test_Y.shape)
-	'''
-	#visualize_data(train_X, train_Y)
+	
 	train_X, test_X = data_preprocessing(train_X, test_X)
 
 	classifier_train_X = train_X[["Pclass", "Age", "SibSp", "Parch", "Fare", "Embarked_encoded", "Sex_encoded"]]
