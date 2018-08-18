@@ -7,4 +7,4 @@ Libraries used:
 * Scikit-learn
 * Matplotlib
 
-AdaBoost achieved an accuracy of 99.28%
+AdaBoost achieved an accuracy of 100%
