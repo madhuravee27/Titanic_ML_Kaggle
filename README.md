@@ -7,7 +7,8 @@ Libraries used:
 * Scikit-learn
 * Matplotlib
 
-Random Forest Classifier - 74.6%
-Decision Tree CLassifier - 75.6%
-Naive Bayes Classifier - 74.6%
-Adaboost Classifier - 62.6%
+Accuracies achieved:
+* Random Forest Classifier - 74.6%
+* Decision Tree CLassifier - 75.6%
+* Naive Bayes Classifier - 74.6%
+* Adaboost Classifier - 62.6%
